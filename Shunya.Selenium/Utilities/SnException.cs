@@ -36,4 +36,5 @@ public static class ErrorCodes
     public static SnError ElementNotFound = new SnError("The element not found", "The html element is not present in webpage requested", 1);
     public static SnError NavigationFailed = new SnError("Navigation Failed", "Failed to navigate to requested URL", 2);
     public static SnError ObjNotFoundContext = new SnError("Object Not Found", "Specified object not found in context", 3);
+    public static SnError NameNotPermited = new SnError("Name Prohibited", "The Name provided starts with Sn which is prohibited :- ", 4);
 }

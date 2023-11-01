@@ -11,4 +11,8 @@
       <ProjectReference Include="..\Shunya.Selenium\Shunya.Selenium.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Selenium\" />
+    </ItemGroup>
+
 </Project>

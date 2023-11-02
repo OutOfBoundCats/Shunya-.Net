@@ -1,6 +1,8 @@
 // Author:- raj
 // Created At:- 01/11/2023/3:30 pm
 
+using Microsoft.Extensions.Logging;
+
 namespace Shunya.Selenium;
 
 /// <summary>
@@ -8,7 +10,14 @@ namespace Shunya.Selenium;
 /// </summary>
 public  class SnContext
 {
-     Dictionary<string, object> hash = new Dictionary<string, object>();
+    public Dictionary<string, object> hash;
+
+     private ILogger? _logger;
+
+     public SnContext(ILogger? logger)
+     {
+         _logger = logger;
+     }
 
      /// <summary>
      /// Store Object in context
@@ -20,6 +29,7 @@ public  class SnContext
      {
          if (objectName.Substring(0, 1) == "Sn")
          {
+             _logger.LogError(ErrorCodes.NameNotPermited.Message);
               throw new SnException(ErrorCodes.NameNotPermited,objectName);
          }
 
@@ -30,11 +40,29 @@ public  class SnContext
          }
          catch (Exception e)
          {
-             Console.WriteLine(e);
+             _logger.LogError(ErrorCodes.ObjNotFoundContext.Message);
              throw new SnException(ErrorCodes.ObjNotFoundContext,objectName);
          }
      }
 
+     public bool SetKey(string keyName, object keyValue)
+     {
+         try
+         {
+             hash[keyName] = keyValue;
+         }
+         catch (Exception e)
+         {
+             _logger.LogError("Error setting context for "+keyName);
+             throw new SnException(ErrorCodes.ErrorSettingContext,keyName);
+         }
+         return true;
+     }
+
+     /// <summary>
+     /// Set action to be executed by execution engine
+     /// </summary>
+     /// <param name="action"></param>
      public void SetAction(Action action)
      {
          try
@@ -43,8 +71,8 @@ public  class SnContext
          }
          catch (Exception e)
          {
-             Console.WriteLine(e);
-             throw;
+             _logger.LogError("Error setting action for "+e.Message);
+             throw e;
          }
      }
 

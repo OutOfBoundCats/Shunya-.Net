@@ -6,14 +6,18 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using Shunya.Selenium.ExecutionEngine;
 
 namespace Shunya.Selenium.Selenium;
 
-public class SnSelenium
+public class SnSelenium:IChainable<Exception>
 {
+    private static string snLogger = "SnLogger";
     public SnContext _context;
     public ILogger _logger;
     public WebDriver _webDriver;
+    private static string snWebDriver = "SnWebDriver";
+
 
     /// <summary>
     /// Initialise Shunya Selenium 
@@ -41,7 +45,41 @@ public class SnSelenium
 
         _logger = logger;
         _context = new SnContext(_logger);
-        _context.SetKey("SnWebDriver",  _webDriver);
-        _context.SetKey("SnLogger", _logger);
+        _context.Add(snWebDriver,  _webDriver);
+    }
+
+    /// <summary>
+    /// DO NOT USE
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    Exception IChainable<Exception>.GetResult()
+    {
+        throw new Exception("Not valid on instance of SnSelenium");
+    }
+
+    /// <summary>
+    /// Get instance of webdriver stored in context
+    /// </summary>
+    /// <returns></returns>
+    public WebDriver GetDriver()
+    {
+        var driver=_context.GetValue(snWebDriver);
+        return driver;
+    }
+
+    /// <summary>
+    /// Get instance of ILogger stored in context
+    /// </summary>
+    /// <returns></returns>
+    public ILogger GetLogger()
+    {
+        var driver=_context.GetValue(snLogger);
+        return driver;
+    }
+
+    public SnContext GetContext()
+    {
+        return _context;
     }
 }

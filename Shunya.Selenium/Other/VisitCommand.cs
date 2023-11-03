@@ -3,6 +3,7 @@
 
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
+using Shunya.Selenium.ExecutionEngine;
 using Shunya.Selenium.Selenium;
 
 namespace Shunya.Selenium.Other;
@@ -15,21 +16,21 @@ public static class VisitCommand
     /// <param name="snSelenium"></param>
     /// <param name="url"></param>
     /// <exception cref="Exception"></exception>
-    public static SnSelenium Visit(this SnSelenium snSelenium,string url)
+    public static IRunnable Visit(this IChainable<Exception> chain,string url)
     {
-        SnContext context = snSelenium._context;
-        WebDriver webdriver = snSelenium._webDriver;
+        SnContext context = chain.GetContext();
+        WebDriver webdriver = chain.GetDriver();
         try
         {
             Action action=NavigateToUrl;
-            context.SetKey("SnAction", action);
-            context.SetKey("SnFunctionData", url);
-            context.SetKey("SnExecutionType", "Action");
-            return snSelenium;
+            context.Add("SnAction", action);
+            context.Add("SnFunctionData", url);
+            context.Add("SnExecutionType", "Action");
+            
         }
         catch (Exception e)
         {
-            snSelenium._logger.LogError("Failed to navigate to " + url);
+            
             throw e;
         }
 
@@ -37,5 +38,7 @@ public static class VisitCommand
         {
             webdriver.Navigate().GoToUrl(url);
         }
+
+        throw new NotImplementedException();
     }
 }

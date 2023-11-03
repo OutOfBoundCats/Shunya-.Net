@@ -10,42 +10,43 @@ namespace Shunya.Selenium;
 /// </summary>
 public  class SnContext
 {
-    public Dictionary<string, object> hash;
+    public Dictionary<string, dynamic> hash;
 
      private ILogger? _logger;
 
      public SnContext(ILogger? logger)
      {
          _logger = logger;
+         this.Add("SnLogger", _logger);
      }
 
      /// <summary>
      /// Store Object in context
      /// </summary>
-     /// <param name="objectName"></param>
+     /// <param name="keyName"></param>
      /// <returns></returns>
      /// <exception cref="SnException"></exception>
-     public object GetValue(string objectName)
+     public dynamic GetValue(string keyName)
      {
-         if (objectName.Substring(0, 1) == "Sn")
+         if (keyName.Substring(0, 1) == "Sn")
          {
              _logger.LogError(ErrorCodes.NameNotPermited.Message);
-              throw new SnException(ErrorCodes.NameNotPermited,objectName);
+              throw new SnException(ErrorCodes.NameNotPermited,keyName);
          }
 
          try
          {
-             object obj = hash[objectName];
+             var obj = hash[keyName];
              return obj;
          }
          catch (Exception e)
          {
              _logger.LogError(ErrorCodes.ObjNotFoundContext.Message);
-             throw new SnException(ErrorCodes.ObjNotFoundContext,objectName);
+             throw new SnException(ErrorCodes.ObjNotFoundContext,keyName);
          }
      }
 
-     public bool SetKey(string keyName, object keyValue)
+     public bool Add(string keyName, dynamic keyValue)
      {
          try
          {

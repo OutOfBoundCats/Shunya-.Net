@@ -12,11 +12,11 @@ namespace Shunya.Selenium.Selenium;
 
 public class SnSelenium:IChainable<Exception>
 {
-    private static string snLogger = "SnLogger";
+    
     public SnContext _context;
     public ILogger _logger;
     public WebDriver _webDriver;
-    private static string snWebDriver = "SnWebDriver";
+  
 
 
     /// <summary>
@@ -45,7 +45,7 @@ public class SnSelenium:IChainable<Exception>
 
         _logger = logger;
         _context = new SnContext(_logger);
-        _context.Add(snWebDriver,  _webDriver);
+        _context.Add(Constants.snWebDriver,  _webDriver);
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class SnSelenium:IChainable<Exception>
     /// <returns></returns>
     public WebDriver GetDriver()
     {
-        var driver=_context.GetValue(snWebDriver);
+        var driver=_context.GetValue(Constants.snWebDriver);
         return driver;
     }
 
@@ -74,7 +74,7 @@ public class SnSelenium:IChainable<Exception>
     /// <returns></returns>
     public ILogger GetLogger()
     {
-        var driver=_context.GetValue(snLogger);
+        var driver=_context.GetValue(Constants.snLoggerr);
         return driver;
     }
 

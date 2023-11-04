@@ -8,22 +8,22 @@ namespace Shunya.Selenium.ExecutionEngine;
 /// <summary>
 /// Function task which takes input as one argument
 /// </summary>
-public class FunctionTaskOne<Resut, Input> : IRunnable
+public class FunctionTaskOne<TResult, TInput> : IRunnable<TResult>
 {
-    private Func<Input, Resut> _function;
-    private Input functionInput;
+    private Func<TInput, TResult> _function;
+    private TInput functionInput;
     private SnContext context;
 
-    public FunctionTaskOne(Func<Input, Resut> function, Input functionInput, SnContext context)
+    public FunctionTaskOne(Func<TInput, TResult> function, TInput functionInput, SnContext context)
     {
         _function = function;
         this.functionInput = functionInput;
         this.context = context;
     }
 
-    public IExecutorResult Execute(int? intervalInMilliseconds = 0, int? maxAttempts = 1)
+    public IExecutorResult<TResult> Execute(int? intervalInMilliseconds = 0, int? maxAttempts = 1)
     {
-        ILogger logger = context.GetValue("SnLogger");
+        ILogger logger = context.GetValue(Constants.snLoggerr);
 
         if (maxAttempts < 1)
         {

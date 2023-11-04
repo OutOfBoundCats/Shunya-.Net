@@ -5,13 +5,18 @@ using Microsoft.Extensions.Logging;
 
 namespace Shunya.Selenium.ExecutionEngine;
 
-public class ActionTask<ActionInput>:IRunnable
+/// <summary>
+/// This class obj is returned from command to be executed by executor with execution options<br/>
+/// This always contain result as bool indidcating success or failure of action
+/// </summary>
+/// <typeparam name="TActionInput">TYpe of Input the action expects</typeparam>
+public class ActionTask<TActionInput>:IRunnable<bool>
 {
-    private Action<ActionInput> action;
-    private ActionInput input;
+    private Action<TActionInput> action;
+    private TActionInput input;
     private SnContext context;
 
-    public ActionTask(Action<ActionInput> action , ActionInput input,ref SnContext context )
+    public ActionTask(Action<TActionInput> action , TActionInput input,ref SnContext context )
     {
         this.action = action;
         this.input = input;
@@ -25,7 +30,7 @@ public class ActionTask<ActionInput>:IRunnable
     /// <param name="maxAttempts"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public IExecutorResult Execute(int? intervalInMilliseconds=0, int? maxAttempts=1)
+    public IExecutorResult<bool> Execute(int? intervalInMilliseconds=0, int? maxAttempts=1)
     {
              
              ILogger logger = context.GetValue("SnLogger");
@@ -43,9 +48,11 @@ public class ActionTask<ActionInput>:IRunnable
                  attempts++;
                  try
                  {
-                     action(input);
+                         action(input);    
                      success = true;
                      //put result along with context in some class obj that implemnts IExecutorResult and return
+                     ActionTaskResult<bool> actionResult = new ActionTaskResult<bool>(ref this.context,true);
+                     return actionResult;
                  }
                  catch (Exception e)
                  {

@@ -16,29 +16,39 @@ public static class VisitCommand
     /// <param name="snSelenium"></param>
     /// <param name="url"></param>
     /// <exception cref="Exception"></exception>
-    public static IRunnable Visit(this IChainable<Exception> chain,string url)
+    public static IRunnable<bool> Visit(this IChainable<Exception> chain,string url)
     {
         SnContext context = chain.GetContext();
         WebDriver webdriver = chain.GetDriver();
         try
         {
-            Action action=NavigateToUrl;
-            context.Add("SnAction", action);
-            context.Add("SnFunctionData", url);
-            context.Add("SnExecutionType", "Action");
-            
+            Action<VisitCommandInput> action=NavigateToUrl;
+            //action("Raj",webdriver);
+            ActionTask<VisitCommandInput> task =
+                new ActionTask<VisitCommandInput>(action, new VisitCommandInput(url, webdriver), ref context);
+
+            return task;
         }
         catch (Exception e)
         {
-            
             throw e;
         }
+    }
 
-        void NavigateToUrl()
-        {
-            webdriver.Navigate().GoToUrl(url);
-        }
+    public static void NavigateToUrl(VisitCommandInput input)
+    {
+        input.webDriver.Navigate().GoToUrl(input.url);
+    }
+}
 
-        throw new NotImplementedException();
+public class VisitCommandInput
+{
+    public string url { get; set; }
+    public WebDriver webDriver { get; set; }
+
+    public VisitCommandInput(string url, WebDriver webDriver)
+    {
+        this.url = url;
+        this.webDriver = webDriver;
     }
 }

@@ -8,13 +8,13 @@ namespace Shunya.Selenium.ExecutionEngine;
 /// <summary>
 /// Function task which takes input as one argument
 /// </summary>
-public class FunctionTaskOne<TResult, TInput> : IRunnable<TResult>
+public class FunctionTaskOne<TResult, TFunctionInput> : IRunnable<TResult>
 {
-    private Func<TInput, TResult> _function;
-    private TInput functionInput;
+    private Func<TFunctionInput, TResult> _function;
+    private TFunctionInput functionInput;
     private SnContext context;
 
-    public FunctionTaskOne(Func<TInput, TResult> function, TInput functionInput, SnContext context)
+    public FunctionTaskOne(Func<TFunctionInput, TResult> function, TFunctionInput functionInput, SnContext context)
     {
         _function = function;
         this.functionInput = functionInput;

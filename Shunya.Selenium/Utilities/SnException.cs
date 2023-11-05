@@ -39,4 +39,5 @@ public static class ErrorCodes
     public static SnError NameNotPermited = new SnError("Name Prohibited", "The Name provided starts with Sn which is prohibited :- ", 4);
     public static SnError ErrorSettingContext = new SnError("Error Settign Context", "Failed to set context :- ", 5);
     public static SnError UnSupportedBrowser = new SnError("Unsupported Browser", "UnSupported Browser :- ", 6);
+    public static SnError TaskNoSuccessful = new SnError("Task not successful", "The given task did not execute successfully :- ", 7);
 }

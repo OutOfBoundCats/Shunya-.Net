@@ -8,6 +8,6 @@ namespace Shunya.Selenium.ExecutionEngine;
 /// </summary>
 public interface IRunnable<TResult>
 {
-    public IExecutorResult<TResult> Execute(int? intervalInMilliseconds, int? maxAttempts);
+    public IExecutorResult<TResult> Execute(int intervalInMilliseconds=0, int maxAttempts=1);
     
 }

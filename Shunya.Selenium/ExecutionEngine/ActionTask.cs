@@ -23,14 +23,15 @@ public class ActionTask<TActionInput>:IRunnable<bool>
         this.context = context;
     }
     
+    
     /// <summary>
     /// Execute the action with option
     /// </summary>
-    /// <param name="intervalInMilliseconds"></param>
-    /// <param name="maxAttempts"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public IExecutorResult<bool> Execute(int? intervalInMilliseconds=0, int? maxAttempts=1)
+    /// <param name="intervalInMilliseconds">Time to stop between attempts</param>
+    /// <param name="maxAttempts">No of attempts</param>
+    /// <returns >IExecutorResult</returns>
+    /// <exception cref="SnException">Throws task not completed exception</exception>
+    public IExecutorResult<bool> Execute(int intervalInMilliseconds=0, int maxAttempts=1)
     {
              
              ILogger logger = context.GetValue("SnLogger");
@@ -67,15 +68,11 @@ public class ActionTask<TActionInput>:IRunnable<bool>
 
                          logger.LogError(errMsg);
 
-                         throw new Exception(errMsg);
+                         throw new SnException(ErrorCodes.TaskNoSuccessful);
                      }
-
-                
                  }
              }
-
-             throw new NotImplementedException();
-             throw new NotImplementedException();
+             throw new SnException(ErrorCodes.TaskNoSuccessful);
     }
 
    

@@ -21,7 +21,7 @@ public class FunctionTaskOne<TResult, TInput> : IRunnable<TResult>
         this.context = context;
     }
 
-    public IExecutorResult<TResult> Execute(int? intervalInMilliseconds = 0, int? maxAttempts = 1)
+    public IExecutorResult<TResult> Execute(int intervalInMilliseconds = 0, int maxAttempts = 1)
     {
         ILogger logger = context.GetValue(Constants.snLoggerr);
 

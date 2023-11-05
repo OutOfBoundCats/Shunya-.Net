@@ -10,7 +10,7 @@ namespace Shunya.Selenium;
 /// </summary>
 public  class SnContext
 {
-    public Dictionary<string, dynamic> hash;
+    public Dictionary<string, dynamic> hash=new Dictionary<string, dynamic>();
 
      private ILogger? _logger;
 

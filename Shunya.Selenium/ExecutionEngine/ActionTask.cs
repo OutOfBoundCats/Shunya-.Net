@@ -31,7 +31,7 @@ public class ActionTask<TActionInput>:IRunnable<bool>
     /// <param name="maxAttempts">No of attempts</param>
     /// <returns >IExecutorResult</returns>
     /// <exception cref="SnException">Throws task not completed exception</exception>
-    public IExecutorResult<bool> Execute(int intervalInMilliseconds=0, int maxAttempts=1)
+    public IChainable<bool> Execute(int intervalInMilliseconds=0, int maxAttempts=1)
     {
              
              ILogger logger = context.GetValue("SnLogger");

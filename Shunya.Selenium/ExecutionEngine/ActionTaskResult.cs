@@ -1,9 +1,12 @@
 // Author:- raj
 // Created At:- 04/11/2023/6:19 pm
 
+using Microsoft.Extensions.Logging;
+using OpenQA.Selenium;
+
 namespace Shunya.Selenium.ExecutionEngine;
 
-public class ActionTaskResult<TResult>:IExecutorResult<TResult>
+public class ActionTaskResult<TResult>:IChainable<TResult>
 {
     private SnContext context;
     private TResult result;
@@ -15,6 +18,12 @@ public class ActionTaskResult<TResult>:IExecutorResult<TResult>
         this.result = result;
     }
 
+    public ILogger GetLogger()
+    {
+        ILogger lg = this.context.GetValue(Constants.snLoggerr);
+        return lg;
+    }
+
     public SnContext GetContext()
     {
         return this.context;
@@ -23,5 +32,11 @@ public class ActionTaskResult<TResult>:IExecutorResult<TResult>
     public TResult GetResult()
     {
         return this.result;
+    }
+
+    public WebDriver GetDriver()
+    {
+        WebDriver lg = this.context.GetValue(Constants.snWebDriver);
+        return lg;
     }
 }

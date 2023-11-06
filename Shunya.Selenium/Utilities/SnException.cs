@@ -40,4 +40,5 @@ public static class ErrorCodes
     public static SnError ErrorSettingContext = new SnError("Error Settign Context", "Failed to set context :- ", 5);
     public static SnError UnSupportedBrowser = new SnError("Unsupported Browser", "UnSupported Browser :- ", 6);
     public static SnError TaskNoSuccessful = new SnError("Task not successful", "The given task did not execute successfully :- ", 7);
+    public static SnError InvalidAliasName = new SnError("Invalid Alias Name", "The Given Name is invalid :- ", 8);
 }

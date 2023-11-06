@@ -26,7 +26,6 @@
     <ItemGroup>
       <Folder Include="Actions\" />
       <Folder Include="Assertions\" />
-      <Folder Include="Query\" />
     </ItemGroup>
 
 </Project>

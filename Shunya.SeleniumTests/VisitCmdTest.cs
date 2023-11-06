@@ -46,7 +46,7 @@ public class VisitCmdTest
         var serilogLogger = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .MinimumLevel.Verbose()
-            .WriteTo.Debug() // Serilog.Sinks.Debug
+            .WriteTo.Console() // Serilog.Sinks.Debug
             .CreateLogger();
 
         var microsoftLogger = new SerilogLoggerFactory(serilogLogger)

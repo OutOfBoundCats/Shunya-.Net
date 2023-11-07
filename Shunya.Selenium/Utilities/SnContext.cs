@@ -28,11 +28,11 @@ public  class SnContext
      /// <exception cref="SnException"></exception>
      public dynamic GetValue(string keyName)
      {
-         if (keyName.Substring(0, 1) == "Sn")
-         {
-             _logger.LogError(ErrorCodes.NameNotPermited.Message);
-              throw new SnException(ErrorCodes.NameNotPermited,keyName);
-         }
+         // if (keyName.Substring(0, 1) == "Sn")
+         // {
+         //     _logger.LogError(ErrorCodes.NameNotPermited.Message);
+         //      throw new SnException(ErrorCodes.NameNotPermited,keyName);
+         // }
 
          try
          {

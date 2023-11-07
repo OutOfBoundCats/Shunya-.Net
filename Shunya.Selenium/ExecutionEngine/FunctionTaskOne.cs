@@ -21,6 +21,14 @@ public class FunctionTaskOne<TResult, TFunctionInput> : IRunnable<TResult>
         this.context = context;
     }
 
+    /// <summary>
+    /// Executed the passed function delegate by passing the passed parameter and returns IRunnable
+    /// </summary>
+    /// <param name="intervalInMilliseconds"></param>
+    /// <param name="maxAttempts"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="NotImplementedException"></exception>
     public IChainable<TResult> Execute(int intervalInMilliseconds = 0, int maxAttempts = 1)
     {
         ILogger logger = context.GetValue(Constants.snLoggerr);
@@ -38,9 +46,10 @@ public class FunctionTaskOne<TResult, TFunctionInput> : IRunnable<TResult>
             attempts++;
             try
             {
-                var resullt = _function(functionInput);
-                success = true;
+                var functionResult = _function(functionInput);
                 //put result along with context in some class obj that implemnts IExecutorResult and return
+                FunctionTaskOneResult<TResult> result = new FunctionTaskOneResult<TResult>(ref this.context, functionResult);
+                return result;
             }
             catch (Exception e)
             {

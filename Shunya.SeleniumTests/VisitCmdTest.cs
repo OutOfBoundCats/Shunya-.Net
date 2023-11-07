@@ -2,11 +2,13 @@
 // Created At:- 04/11/2023/8:36 pm
 
 using Microsoft.Extensions.Logging;
+using OpenQA.Selenium;
 using Serilog;
 using Serilog.Events;
 using Serilog.Extensions.Logging;
 using Shunya.Selenium;
 using Shunya.Selenium.Other;
+using Shunya.Selenium.Query;
 using Shunya.Selenium.Selenium;
 using ILogger = Serilog.ILogger;
 
@@ -55,7 +57,7 @@ public class VisitCmdTest
         //private static ILogger log = Log.ForContext(typeof(VisitCmdTest));
         
         SnSelenium sn = new SnSelenium(Constants.SupportedBrowsers.CHROME,microsoftLogger);
-        sn.Visit("https://www.youtube.com/").Execute();
+        sn.Visit("https://www.youtube.com/").Execute().Get(By.Id("A"));
         
         Assert.Pass();
     }

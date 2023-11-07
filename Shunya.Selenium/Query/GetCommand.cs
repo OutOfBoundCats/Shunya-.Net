@@ -15,7 +15,7 @@ public static class GetCommand
    /// <param name="chain"></param>
    /// <param name="searchDetails"></param>
    /// <returns></returns>
-    public static IRunnable<ReadOnlyCollection<IWebElement>> Get(this IChainable<Exception> chain, By searchDetails)
+    public static IRunnable<ReadOnlyCollection<IWebElement>> Get<T>(this IChainable<T> chain, By searchDetails)
     {
         var context = chain.GetContext();
         var webdriver = chain.GetDriver();

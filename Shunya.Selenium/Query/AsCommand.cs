@@ -19,7 +19,7 @@ public static class AsCommand
     /// <param name="alias"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public static IChainable<bool> As(this IChainable<Exception> chain,string alias)
+    public static IChainable<bool> As<T>(this IChainable<T> chain,string alias)
     {
         SnContext context = chain.GetContext();
         WebDriver webdriver = chain.GetDriver();

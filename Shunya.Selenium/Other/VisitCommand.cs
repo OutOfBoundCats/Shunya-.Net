@@ -16,7 +16,7 @@ public static class VisitCommand
     /// <param name="snSelenium"></param>
     /// <param name="url"></param>
     /// <exception cref="Exception"></exception>
-    public static IRunnable<bool> Visit(this IChainable<Exception> chain,string url)
+    public static IRunnable<bool> Visit<T>(this IChainable<T> chain,string url)
     {
         SnContext context = chain.GetContext();
         WebDriver webdriver = chain.GetDriver();

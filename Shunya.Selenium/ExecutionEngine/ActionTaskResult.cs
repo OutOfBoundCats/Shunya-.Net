@@ -24,9 +24,9 @@ public class ActionTaskResult<TResult>:IChainable<TResult>
         return lg;
     }
 
-    public SnContext GetContext()
+    public ref SnContext GetContext()
     {
-        return this.context;
+        return ref this.context;
     }
 
     public TResult GetResult()

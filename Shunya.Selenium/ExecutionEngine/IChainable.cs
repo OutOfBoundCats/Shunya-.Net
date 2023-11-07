@@ -14,5 +14,5 @@ public interface IChainable<Result>
     public Result GetResult();
     public WebDriver GetDriver();
     public ILogger GetLogger();
-    public SnContext GetContext();
+    public ref SnContext GetContext();
 }

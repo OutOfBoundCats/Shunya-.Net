@@ -78,8 +78,8 @@ public class SnSelenium:IChainable<Exception>
         return driver;
     }
 
-    public SnContext GetContext()
+    public ref SnContext GetContext()
     {
-        return _context;
+        return ref _context;
     }
 }

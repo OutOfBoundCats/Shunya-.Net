@@ -19,10 +19,12 @@
         <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
         <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+        <PackageReference Include="Serilog.Sinks.NUnit" Version="1.0.3" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Shunya.Selenium\Shunya.Selenium.csproj" />
     </ItemGroup>
+
 
 </Project>

@@ -82,4 +82,10 @@ public class SnSelenium:IChainable<Exception>
     {
         return ref _context;
     }
+
+    public void Close()
+    {
+        WebDriver driver=_context.GetValue(Constants.snWebDriver);
+        driver.Quit();
+    }
 }

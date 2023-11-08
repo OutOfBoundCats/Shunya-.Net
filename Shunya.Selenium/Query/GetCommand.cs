@@ -30,7 +30,7 @@ public static class GetCommand
    /// <param name="chain"></param>
    /// <param name="searchDetails"></param>
    /// <returns></returns>
-   public static IRunnable<IWebElement> GetOne(this IChainable<Exception> chain, By searchDetails)
+   public static IRunnable<IWebElement> GetOne<T>(this IChainable<T> chain, By searchDetails)
    {
        var context = chain.GetContext();
        var webdriver = chain.GetDriver();

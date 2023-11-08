@@ -23,9 +23,5 @@
 
 
 
-    <ItemGroup>
-      <Folder Include="Actions\" />
-      <Folder Include="Assertions\" />
-    </ItemGroup>
 
 </Project>

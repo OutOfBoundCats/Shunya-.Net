@@ -46,9 +46,31 @@ public class OtherCommandsTest
     }
     
     [Test]
-    public void VisitTest2()
+    public void GetOneTest()
     {
-        snSel.Visit("https://www.google.com/").Execute();
-        Assert.Pass();
+        IWebElement foundElement=snSel.Visit("https://www.selenium.dev").Execute()
+            .GetOne(By.XPath("/html/body/div/main/section[2]/div/div/div[2]/div/div[1]/h4")).Execute().GetResult();
+        Assert.AreEqual("Selenium IDE",foundElement.Text);
     }
+    
+    [Test]
+    public void GetManyTest()
+    {
+        var foundElement=snSel.Visit("https://www.selenium.dev").Execute()
+            .Get(By.XPath("/html/body/div/main/section[2]/div/div/div[2]/div/div[1]/h4")).Execute().GetResult();
+        Assert.AreEqual(1, foundElement.Count());
+    }
+    
+    [Test]
+    public void AsTest()
+    {
+        var foundElement=snSel.Visit("https://www.selenium.dev").Execute()
+            .Get(By.XPath("/html/body/div/main/section[2]/div/div/div[2]/div/div[1]/h4")).Execute().As("@save");
+        //check if obj was infact stored in context
+        var context = snSel.GetContext();
+       Assert.NotNull(context.GetValue("@save"));
+    }
+    
+    
+    
 }

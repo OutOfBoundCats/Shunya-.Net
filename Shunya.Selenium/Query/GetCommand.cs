@@ -21,7 +21,7 @@ public static class GetCommand
         var webdriver = chain.GetDriver();
         Func<By, ReadOnlyCollection<IWebElement>> foundElements = webdriver.FindElements;
         var functionTask =
-            new FunctionTaskOne<ReadOnlyCollection<IWebElement>, By>(foundElements, searchDetails, context);
+            new FunctionTaskOne<ReadOnlyCollection<IWebElement>, By>(foundElements, searchDetails,ref context);
         return functionTask;
     }
    /// <summary>
@@ -36,7 +36,7 @@ public static class GetCommand
        var webdriver = chain.GetDriver();
        Func<By, IWebElement> foundElements = webdriver.FindElement;
        var functionTask =
-           new FunctionTaskOne<IWebElement, By>(foundElements, searchDetails, context);
+           new FunctionTaskOne<IWebElement, By>(foundElements, searchDetails,ref context);
        return functionTask;
    }
 }

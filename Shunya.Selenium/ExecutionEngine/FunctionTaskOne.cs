@@ -14,7 +14,7 @@ public class FunctionTaskOne<TResult, TFunctionInput> : IRunnable<TResult>
     private TFunctionInput functionInput;
     private SnContext context;
 
-    public FunctionTaskOne(Func<TFunctionInput, TResult> function, TFunctionInput functionInput, SnContext context)
+    public FunctionTaskOne(Func<TFunctionInput, TResult> function, TFunctionInput functionInput,ref SnContext context)
     {
         _function = function;
         this.functionInput = functionInput;

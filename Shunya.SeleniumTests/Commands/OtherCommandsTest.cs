@@ -49,7 +49,7 @@ public class OtherCommandsTest
     public void GetOneTest()
     {
         IWebElement foundElement=snSel.Visit("https://www.selenium.dev").Execute()
-            .GetOne(By.XPath("/html/body/div/main/section[2]/1232div/div/div[2]/div/div[1]/h4")).Execute(2,2).GetResult();
+            .GetOne(By.XPath("/html/body/div/main/section[2]/div/div/div[2]/div/div[1]/h4")).Execute(2,2).GetResult();
         Assert.AreEqual("Selenium IDE",foundElement.Text);
     }
     

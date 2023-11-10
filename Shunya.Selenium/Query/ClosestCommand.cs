@@ -2,6 +2,7 @@
 // Created At:- 09/11/2023/4:27 pm
 
 using System.Collections.ObjectModel;
+using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using Shunya.Selenium.ExecutionEngine;
 
@@ -9,7 +10,7 @@ namespace Shunya.Selenium.Query;
 
 public static class ClosestCommand
 {
-
+    private static ILogger logger;
     /// <summary>
     /// Gets the closest element satisfying the options <br/>
     /// Throws error if it reaches body tag without finding element.
@@ -20,6 +21,7 @@ public static class ClosestCommand
     public static IRunnable<IWebElement> Closest(this IChainable<IWebElement> chain,string searchText)
     {
         IWebElement result = chain.GetResult();
+        logger = chain.GetLogger();
         var context = chain.GetContext();
         var findClosest = GetClosest;
         var functionTask =
@@ -33,6 +35,7 @@ public static class ClosestCommand
         while (!found)
         {
             IWebElement parentElement = input.webElement.FindElement(By.XPath("./.."));
+            logger.LogInformation("Prent element tag is "+parentElement.TagName);
             if (parentElement.TagName == "body")
             {
                 break;
@@ -49,7 +52,7 @@ public static class ClosestCommand
             else
             {
                 //search by html tag
-                string tagName = input.webElement.TagName;
+                string tagName = parentElement.TagName;
                 if (tagName == input.searchText)
                 {
                     return parentElement;

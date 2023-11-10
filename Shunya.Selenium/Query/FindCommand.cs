@@ -17,7 +17,7 @@ public static class FindCommand
     /// <param name="chain"></param>
     /// <param name="searchText"></param>
     /// <returns></returns>
-    public static IChainable<ReadOnlyCollection<IWebElement>> Find(IChainable<IWebElement> chain, string searchText)
+    public static IChainable<ReadOnlyCollection<IWebElement>> Find(this IChainable<IWebElement> chain, string searchText)
     {
         IWebElement webElement = chain.GetResult();
         SnContext context = chain.GetContext();

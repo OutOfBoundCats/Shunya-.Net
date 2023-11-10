@@ -46,6 +46,33 @@ public class QueryTests
         Assert.Pass();
     }
     
+    [Test]
+    public void EqTestFirstElement()
+    {
+        var foundElement=snSel.Visit("https://hasare.com/").Execute()
+            .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Eq(0);
+        string firstElementText =
+            "URL Encoder/Decoder is a simple online tool that does exactly what it says, it helps decode from URL encoding as well as encodes to URL quickly, securely and easily. URL Encoder/Decoder encode/decodes your data without hassles or decode it into a human-readable format";
+        string lastElemment = "Your Ultimate Text Comparison Tool. Easily compare and analyze differences between two texts with precision and speed. Whether you're a writer, editor, programmer, or student, TextDiffCheck empowers you to identify changes, revisions, and variations effortlessly. Enhance your productivity and accuracy.";
+        Assert.AreEqual(firstElementText,foundElement.GetResult().Text);
+        Assert.AreEqual(firstElementText,foundElement.GetResult().Text);
+    }
     
-
+    [Test]
+    public void EqTestLastElement()
+    {
+        var foundElement=snSel.Visit("https://hasare.com/").Execute()
+            .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Eq(-1);
+        string lastElemment = "Your Ultimate Text Comparison Tool. Easily compare and analyze differences between two texts with precision and speed. Whether you're a writer, editor, programmer, or student, TextDiffCheck empowers you to identify changes, revisions, and variations effortlessly. Enhance your productivity and accuracy.";
+        Assert.AreEqual(lastElemment,foundElement.GetResult().Text);
+    }
+    
+    [Test]
+    public void FilterTest()
+    {
+        string lastElemment = "Your Ultimate Text Comparison Tool. Easily compare and analyze differences between two texts with precision and speed. Whether you're a writer, editor, programmer, or student, TextDiffCheck empowers you to identify changes, revisions, and variations effortlessly. Enhance your productivity and accuracy.";
+        var foundElement=snSel.Visit("https://hasare.com/").Execute()
+            .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Filter(el=>el.Text==lastElemment);
+        Assert.AreEqual(lastElemment,foundElement.ElementAt(0).Text);
+    }
 }

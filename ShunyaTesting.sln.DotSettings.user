@@ -3,5 +3,8 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.OtherCommandsTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.ClosestTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.EqTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.EqTestLastElement&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.FilterTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

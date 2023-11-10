@@ -15,7 +15,7 @@ public static class FilterCommand
     /// <param name="func"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static IEnumerable<T> Filter<T>(this IChainable<ReadOnlyCollection<T>> chain,Func<T,bool> func)
+    public static IChainable<List<T>> Filter<T>(this IChainable<ReadOnlyCollection<T>> chain,Func<T,bool> func)
     {
         List<T> filteredList = new List<T>();
         foreach (var item in chain.GetResult())
@@ -25,6 +25,7 @@ public static class FilterCommand
                 filteredList.Add(item);
             }
         }
-        return filteredList;
+        ActionTaskResult<List<T>> actionResult = new ActionTaskResult<List<T>>(ref chain.GetContext(),filteredList);
+        return actionResult;
     }
 }

@@ -28,4 +28,18 @@ public static class FilterCommand
         ActionTaskResult<List<T>> actionResult = new ActionTaskResult<List<T>>(ref chain.GetContext(),filteredList);
         return actionResult;
     }
+    
+    public static ReadOnlyCollection<T> Filter<T>(this ReadOnlyCollection<T> chain,Func<T,bool> func)
+    {
+        List<T> filteredList = new List<T>();
+        foreach (var item in chain)
+        {
+            if (func(item))
+            {
+                filteredList.Add(item);
+            }
+        }
+
+        return new ReadOnlyCollection<T>(filteredList);
+    }
 }

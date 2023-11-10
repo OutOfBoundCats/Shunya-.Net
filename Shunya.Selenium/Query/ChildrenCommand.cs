@@ -1,6 +1,7 @@
 // Author:- raj
 // Created At:- 06/11/2023/3:07 pm
 
+using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using Shunya.Selenium.ExecutionEngine;
 
@@ -16,7 +17,7 @@ public static class ChildrenCommand
     /// <param name="alias"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public static IChainable<bool> Children(this IChainable<IWebElement> chain,string alias)
+    public static IChainable<ReadOnlyCollection<IWebElement>> Children(this IChainable<IWebElement> chain,string alias)
     {
         SnContext context = chain.GetContext();
         WebDriver webdriver = chain.GetDriver();
@@ -24,7 +25,7 @@ public static class ChildrenCommand
         try
         {
             var childrens=webElement.FindElements(By.XPath("*"));
-            ActionTaskResult<bool> actionResult = new ActionTaskResult<bool>(ref context,true);
+            ActionTaskResult<ReadOnlyCollection<IWebElement>> actionResult = new ActionTaskResult<ReadOnlyCollection<IWebElement>>(ref context,childrens);
             return actionResult;
         }
         catch (Exception e)

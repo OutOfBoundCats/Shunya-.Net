@@ -109,4 +109,11 @@ public class QueryTests
         var result=snSel.Visit("https://hasare.com/").Execute().Location().GetResult();
         Assert.AreEqual("https://hasare.com/",result);
     }
+    
+    [Test]
+    public void PauseTest()
+    {
+        var result=snSel.Visit("https://hasare.com/").Execute().Pause().Location().GetResult();
+        Assert.AreEqual("https://hasare.com/",result);
+    }
 }

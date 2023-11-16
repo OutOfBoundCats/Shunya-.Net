@@ -10,5 +10,6 @@
     &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.FirstTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.LastTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.LocationTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39E6485D-7A22-4761-A7A9-FFD04249DBB2::net7.0::Shunya.SeleniumTests.QueryTests.PauseTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

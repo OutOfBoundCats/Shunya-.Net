@@ -102,4 +102,11 @@ public class QueryTests
             .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Last().GetResult();
         Assert.AreEqual(lastElemment,foundElement.Text);
     }
+
+    [Test]
+    public void LocationTest()
+    {
+        var result=snSel.Visit("https://hasare.com/").Execute().Location().GetResult();
+        Assert.AreEqual("https://hasare.com/",result);
+    }
 }

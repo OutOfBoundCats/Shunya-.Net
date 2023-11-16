@@ -10,12 +10,12 @@ namespace Shunya.Selenium.Query;
 public static class FirstCommand
 {
     /// <summary>
-    /// Returns firsdt element from read only collection
+    /// Returns first element from read only collection
     /// </summary>
     /// <param name="chain"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static IChainable<T> Filter<T>(this IChainable<ReadOnlyCollection<T>> chain)
+    public static IChainable<T> First<T>(this IChainable<ReadOnlyCollection<T>> chain)
     {
         ActionTaskResult<T> actionResult = new ActionTaskResult<T>(ref chain.GetContext(),chain.GetResult().ElementAt(0));
         return actionResult;

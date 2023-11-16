@@ -93,4 +93,13 @@ public class QueryTests
             .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Filter(el=>el.Text==lastElemment).First().GetResult();
         Assert.AreEqual(lastElemment,foundElement.Text);
     }
+    
+    [Test]
+    public void LastTest()
+    {
+        string lastElemment = "Your Ultimate Text Comparison Tool. Easily compare and analyze differences between two texts with precision and speed. Whether you're a writer, editor, programmer, or student, TextDiffCheck empowers you to identify changes, revisions, and variations effortlessly. Enhance your productivity and accuracy.";
+        var foundElement=snSel.Visit("https://hasare.com/").Execute()
+            .Get(By.XPath("//*[@id=\"products\"]/div/dl/div[*]/dd")).Execute().Last().GetResult();
+        Assert.AreEqual(lastElemment,foundElement.Text);
+    }
 }

@@ -71,6 +71,22 @@ public class OtherCommandsTest
        Assert.NotNull(context.GetValue("@save"));
     }
     
+    [Test]
+    public void WaitTest()
+    {
+        var result = snSel.Visit("https://hasare.com/").Execute().Wait(10000).Location().GetResult();
+        logger.LogInformation("WaitTest ::" + result);
+        Assert.AreEqual("https://hasare.com/", result);
+    }
+    
+    
+    [Test]
+    public void PauseTest()
+    {
+        var result=snSel.Visit("https://hasare.com/").Execute().Pause().Location().GetResult();
+        Assert.AreEqual("https://hasare.com/",result);
+    }
+    
     
     
 }

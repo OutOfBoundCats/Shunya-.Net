@@ -12,10 +12,13 @@ namespace Shunya.Selenium.Other;
 
 public static class PauseCommand
 {
+
     /// <summary>
-    /// Pauses execution indefinitely pause browser window is closed. 
+    /// Pauses execution indefinitely pause browser window is closed. </br>
+    /// Only For debugging purpose
     /// </summary>
     /// <param name="chain"></param>
+    /// <param name="skip"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     public static IChainable<T> Pause<T>(this IChainable<T> chain,bool skip=false)
@@ -26,7 +29,6 @@ public static class PauseCommand
         l.LogInformation("Paused execution.Waiting for window close");
         string originalWindow = driver.CurrentWindowHandle;
         driver.SwitchTo().NewWindow(WindowType.Window);
-        var element = driver.FindElement(By.TagName("body"));
         IJavaScriptExecutor js = (IJavaScriptExecutor) driver;
         js.ExecuteScript("document.body.innerHTML='<div>Execution is paused.Please close this window to continue execution.</div>'");
         string pauseWindow = driver.CurrentWindowHandle;

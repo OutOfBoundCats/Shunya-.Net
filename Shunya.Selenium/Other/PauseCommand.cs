@@ -14,13 +14,11 @@ public static class PauseCommand
 {
 
     /// <summary>
-    /// Pauses execution indefinitely pause browser window is closed. </br>
-    /// Only For debugging purpose
+    /// Pauses execution indefinitely pause browser window is closed. <br/>
+    ///  Only For <b> debugging </b> purpose
     /// </summary>
-    /// <param name="chain"></param>
-    /// <param name="skip"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="skip">whether to skip the pause</param>
+    /// <returns>IChainable</returns>
     public static IChainable<T> Pause<T>(this IChainable<T> chain,bool skip=false)
     {
         bool stop = false;

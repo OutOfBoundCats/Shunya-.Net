@@ -41,4 +41,5 @@ public static class ErrorCodes
     public static SnError UnSupportedBrowser = new SnError("Unsupported Browser", "UnSupported Browser :- ", 6);
     public static SnError TaskNoSuccessful = new SnError("Task not successful", "The given task did not execute successfully :- ", 7);
     public static SnError InvalidAliasName = new SnError("Invalid Alias Name", "The Given Name is invalid :- ", 8);
+    public static SnError OsNotSupported = new SnError("Unsupported Operating system", "The command you are trying to execute is not implemented for your operating system :- ", 9);
 }

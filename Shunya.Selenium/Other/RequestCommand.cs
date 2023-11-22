@@ -16,6 +16,11 @@ public static class RequestCommand
     /// <returns></returns>
     public static IChainable<T> Request<T>(this IChainable<T> chain,string url,HttpMethod method)
     {
-        
+        throw new NotImplementedException();
     }
+}
+
+public class HttpOptions
+{
+    
 }

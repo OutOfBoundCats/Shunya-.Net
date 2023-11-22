@@ -46,6 +46,17 @@ public  class SnContext
          }
      }
 
+     /// <summary>
+     /// Return types value from context
+     /// </summary>
+     /// <param name="keyname"></param>
+     /// <typeparam name="TResult"></typeparam>
+     /// <returns></returns>
+     public TResult GetTypeValue<TResult>(string keyname)
+     {
+         return (TResult)GetValue(keyname);
+     }
+
      public bool Add(string keyName, dynamic keyValue)
      {
          try

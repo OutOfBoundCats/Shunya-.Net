@@ -5,6 +5,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
+using OpenQA.Selenium;
 using Shunya.Selenium.ExecutionEngine;
 
 namespace Shunya.Selenium.Other;
@@ -12,56 +13,33 @@ namespace Shunya.Selenium.Other;
 public static class PauseCommand
 {
     /// <summary>
-    /// Pauses execution untill input is provided 
+    /// Pauses execution indefinitely pause browser window is closed. 
     /// </summary>
     /// <param name="chain"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static IChainable<T> Pause<T>(this IChainable<T> chain)
+    public static IChainable<T> Pause<T>(this IChainable<T> chain,bool skip=false)
     {
         bool stop = false;
         ILogger l = chain.GetLogger();
-        Console.WriteLine("Paused execution.Waiting for any keyboard input");
-        l.LogInformation("Paused execution.Waiting for any keyboard input");
-        //string a = Console.ReadLine();
-        //detect os and open terminal or cmd 
-        string programName;
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        var driver = chain.GetDriver();
+        l.LogInformation("Paused execution.Waiting for window close");
+        string originalWindow = driver.CurrentWindowHandle;
+        driver.SwitchTo().NewWindow(WindowType.Window);
+        var element = driver.FindElement(By.TagName("body"));
+        IJavaScriptExecutor js = (IJavaScriptExecutor) driver;
+        js.ExecuteScript("document.body.innerHTML='<div>Execution is paused.Please close this window to continue execution.</div>'");
+        string pauseWindow = driver.CurrentWindowHandle;
+        bool isClosed = false;
+        while (!isClosed)
         {
-            // Do something
-            programName="/bin/bash";
-        }else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            programName="cmd.exe";
+            var a =driver.WindowHandles.Where(x => x == pauseWindow);
+            if (a.Count() == 0)
+            {
+                isClosed = true;
+            }
         }
-        else
-        {
-            throw new SnException(ErrorCodes.OsNotSupported);
-        }
-        
-        ProcessStartInfo pro = new ProcessStartInfo();
-        //Setting the FileName to be Started like in our
-        //Project we are just going to start a CMD Window.
-        pro.FileName = programName;
-        pro.RedirectStandardInput = true;
-        pro.RedirectStandardOutput = true;
-        pro.UseShellExecute = false;
-        
-        Process proStart = new Process();
-        proStart.StartInfo = pro;
-        proStart.Start ();
-
-        StreamWriter streamWriter = proStart.StandardInput;
-        String inputText="";
-        int numLines = 0;
-        do
-        {
-            inputText = "raj";
-            Thread.Sleep(10000);
-            //inputText=streamWriter.
-        } while (inputText.Length == 0);
-        
-        
+        driver.SwitchTo().Window(originalWindow);
         ActionTaskResult<T> actionResult = new ActionTaskResult<T>(ref chain.GetContext(),chain.GetResult());
         return actionResult;
     }

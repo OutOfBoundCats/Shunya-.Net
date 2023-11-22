@@ -6,6 +6,8 @@ namespace Shunya.Selenium;
 public class Constants
 {
     public enum SupportedBrowsers {CHROME,FIREFOX,IE }
+    
+    public enum RestApiTypes {JSON,SOAP}
     //SNContext keys
     public static string snLoggerr = "SnLogger";
     public static string snWebDriver="SnWebDriver";

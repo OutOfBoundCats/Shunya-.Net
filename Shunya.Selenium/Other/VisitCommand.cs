@@ -1,6 +1,7 @@
 // Author:- raj
 // Created At:- 02/11/2023/4:37 pm
 
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using Shunya.Selenium.ExecutionEngine;

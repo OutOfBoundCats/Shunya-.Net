@@ -68,6 +68,7 @@ public class OtherCommandsTest
             .Get(By.XPath("/html/body/div/main/section[2]/div/div/div[2]/div/div[1]/h4")).Execute().As("@save");
         //check if obj was infact stored in context
         var context = snSel.GetContext();
+        var a=context.GetTypeValue<IReadOnlyCollection<IWebDriver>>("@save");
        Assert.NotNull(context.GetValue("@save"));
     }
     

@@ -28,6 +28,38 @@ Then we can run commands on the `snSel` as `SnSelenium` implements `IChainable` 
 
 <br/>
 
+## All Actions are chainable by default
+for example
+
+`SnSelenium snSel = new SnSelenium(Constants.SupportedBrowsers.CHROME,logger);`
+`snSel.Visit("https://hasare.com/").Execute().GetOne({provide x path}).Execute()...(next commmand)`
+
+as shown in above example we can chain commands together to accomplish the task.<br/>
+## Built in retries
+Most Action are retryable by default <br/>
+So if you want cetail action to execute atmost 3 times with time duration of 100 miliseconds between each rety till it succeds
+then you can pass below parameters to `Execute` Method
+`Execute(100,3)` here 100 is time duration between retries and 3 iss max no of attempt
+
+## Get Result of action
+To get result of particular action we can call `GetResult()` on Result returned by `Execute` method
+`IWebElement el=snSel.Visit("https://hasare.com/").Execute().GetOne({provide x path}).Execute().GetRessullt()` <br/>
+Point to note calling `GetResult` breaks the chaining ability. <br/>
+
+To save the result for later user but to continue execution chain please see below command `As`
+
+## Saving result in context
+As shown in diagram above Shunya initiates its own context which is used internally to store bunch of things.You can make use of same context to store result of action execution.<br/>
+`snSel.Visit("https://hasare.com/").Execute().GetOne({provide x path}).Execute().As("@elementone")...action chain` <br/>
+what this allows you do to is save the result of action and continue chaining to achive objective.But when at later point you want to use the result you can simply call<br/>
+`var context = snSel.GetContext();` Get Context
+`IWebElement a=context.GetTypeValue<IWebElement>("@elementone");`  Get saved IWebElement
+<br/>  **!!! One Thing to note here is you should know the type of object you are retrieving fromm context !!!**
+<br/>  **!!! You could find the type of object by checking Return Type of Execute method before calling As on it !!!**
+
+
+## To See what all commands are implemented please look under tests
+
 
 
 

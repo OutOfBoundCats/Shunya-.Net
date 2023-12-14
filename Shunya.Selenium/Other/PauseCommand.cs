@@ -14,7 +14,7 @@ public static class PauseCommand
 {
 
     /// <summary>
-    /// Pauses execution indefinitely pause browser window is closed. <br/>
+    /// Pauses execution indefinitely resumes after browser window is closed. <br/>
     ///  Only For <b> debugging </b> purpose
     /// </summary>
     /// <param name="skip">whether to skip the pause</param>
@@ -24,22 +24,25 @@ public static class PauseCommand
         bool stop = false;
         ILogger l = chain.GetLogger();
         var driver = chain.GetDriver();
-        l.LogInformation("Paused execution.Waiting for window close");
-        string originalWindow = driver.CurrentWindowHandle;
-        driver.SwitchTo().NewWindow(WindowType.Window);
-        IJavaScriptExecutor js = (IJavaScriptExecutor) driver;
-        js.ExecuteScript("document.body.innerHTML='<div>Execution is paused.Please close this window to continue execution.</div>'");
-        string pauseWindow = driver.CurrentWindowHandle;
-        bool isClosed = false;
-        while (!isClosed)
+        if (!skip)
         {
-            var a =driver.WindowHandles.Where(x => x == pauseWindow);
-            if (a.Count() == 0)
+            l.LogInformation("Paused execution.Waiting for window close");
+            string originalWindow = driver.CurrentWindowHandle;
+            driver.SwitchTo().NewWindow(WindowType.Window);
+            IJavaScriptExecutor js = (IJavaScriptExecutor) driver;
+            js.ExecuteScript("document.body.innerHTML='<div>Execution is paused.Please close this window to continue execution.</div>'");
+            string pauseWindow = driver.CurrentWindowHandle;
+            bool isClosed = false;
+            while (!isClosed)
             {
-                isClosed = true;
+                var a =driver.WindowHandles.Where(x => x == pauseWindow);
+                if (a.Count() == 0)
+                {
+                    isClosed = true;
+                }
             }
+            driver.SwitchTo().Window(originalWindow);
         }
-        driver.SwitchTo().Window(originalWindow);
         ActionTaskResult<T> actionResult = new ActionTaskResult<T>(ref chain.GetContext(),chain.GetResult());
         return actionResult;
     }

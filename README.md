@@ -7,9 +7,16 @@
 - action - interact with your application as a user would
 - other - any other command that is useful for writing tests
 
+
+## Instalation
+
+```
+dotnet add package Shunya.Selenium --version 0.1.0
+```
+
 ## The basic execution flow is shown below
 
-![image description](Documentation/Images/ExecutionFlow.png)
+![image description](https://raw.githubusercontent.com/OutOfBoundCats/Shunya-.Net/master/Documentation/Images/ExecutionFlow.png)
 
 We first start by creating Instance of `IChainable` i.e. `SnSelenium` by passing Type of browser and Instance of ILogger.<br/>
 This also created context which is then passed by reference to all subsequent commands.

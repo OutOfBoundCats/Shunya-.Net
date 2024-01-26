@@ -4,12 +4,23 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Shunya Selenium</Title>
+        <Authors>Raj patil</Authors>
+        <Description>Cypress like api for selenium with type safety of c# and built in retrievability.</Description>
+        <PackageProjectUrl>https://github.com/OutOfBoundCats/Shunya-.Net</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/OutOfBoundCats/Shunya-.Net</RepositoryUrl>
+        <PackageTags>cypress,selenium,browser automation,automation</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Version>0.1</Version>
     </PropertyGroup>
 
 
 
 
     <ItemGroup>
+        <None Include="../README.md" Pack="true" PackagePath="\"/>
       <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
       <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />

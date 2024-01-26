@@ -2,10 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shunya.Selenium", "Shunya.Selenium\Shunya.Selenium.csproj", "{E3A273A1-006B-43BC-9CC2-3E96652B4206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shunya.Framework", "Shunya.Framework\Shunya.Framework.csproj", "{AD8E0321-200E-40BE-862E-FB000A1154F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shunya.Core", "Shunya.Core\Shunya.Core.csproj", "{93208BCD-E030-4191-B69B-B78487CA711E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shunya.SeleniumTests", "Shunya.SeleniumTests\Shunya.SeleniumTests.csproj", "{39E6485D-7A22-4761-A7A9-FFD04249DBB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shunya.Examples", "Shunya.Examples\Shunya.Examples.csproj", "{2C540F8A-A91B-4746-86B7-C68EF1003BE7}"
@@ -20,14 +16,6 @@ Global
 		{E3A273A1-006B-43BC-9CC2-3E96652B4206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3A273A1-006B-43BC-9CC2-3E96652B4206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3A273A1-006B-43BC-9CC2-3E96652B4206}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD8E0321-200E-40BE-862E-FB000A1154F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD8E0321-200E-40BE-862E-FB000A1154F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD8E0321-200E-40BE-862E-FB000A1154F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD8E0321-200E-40BE-862E-FB000A1154F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93208BCD-E030-4191-B69B-B78487CA711E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93208BCD-E030-4191-B69B-B78487CA711E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93208BCD-E030-4191-B69B-B78487CA711E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93208BCD-E030-4191-B69B-B78487CA711E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39E6485D-7A22-4761-A7A9-FFD04249DBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39E6485D-7A22-4761-A7A9-FFD04249DBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E6485D-7A22-4761-A7A9-FFD04249DBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -15,8 +15,7 @@ public static class ClosestCommand
     /// Gets the closest element satisfying the options <br/>
     /// Throws error if it reaches body tag without finding element.
     /// </summary>
-    /// <param name="chain"></param>
-    /// <param name="searchText"></param>
+    /// <param name="searchText">takes in .classNanme or htmgtag </param>
     /// <returns>IRunnable&lt;IWebElement&gt;</returns>
     public static IRunnable<IWebElement> Closest(this IChainable<IWebElement> chain,string searchText)
     {
